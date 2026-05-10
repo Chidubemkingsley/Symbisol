@@ -11,10 +11,12 @@
 
 SYMBISOL is a **systemic Agent-to-Agent (A2A) economy** — not a toy demo. A Manager Agent receives natural-language queries, plans multi-step tasks via LLM, **autonomously evaluates worker agents** on reputation and cost-efficiency, and settles every payment on-chain through **real x402 HTTP 402** payment protocol transactions on Solana devnet.
 
-### LIVE DEMO
 
-[LIVE DEMO](https://symbisol-frontend-khxp.vercel.app/)
-[LIVE VIDEO](https://youtu.be/fvNT_XmQQxY)
+
+## [LIVE DEMO](https://symbisol-frontend-khxp.vercel.app/)
+
+
+## [LIVE VIDEO](https://youtu.be/fvNT_XmQQxY)
 
 
 ### Key Differentiators
