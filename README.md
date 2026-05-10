@@ -5,6 +5,7 @@
 > **Built For Dev3Pack Solana Hackathon 2026.**
 
 ---
+![image](./frontend/public/sym.png)
 
 ## What is SYMBISOL?
 
