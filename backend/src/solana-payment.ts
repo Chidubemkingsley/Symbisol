@@ -88,16 +88,25 @@ export function createSolanaPaymentMiddleware(config: PaymentConfig) {
 
     try {
       const signature = incomingPaymentSig;
-      const txConfirmed = await connection.confirmTransaction(signature, 'confirmed');
 
-      if (txConfirmed.value.err) {
-        res.status(402).json({ error: 'Payment not confirmed', detail: txConfirmed.value.err });
+      // Poll for the transaction with retries — avoids the legacy 30s timeout
+      // of confirmTransaction(signature, commitment). The tx was already sent
+      // by the frontend wallet, so we just need to verify it exists on-chain.
+      let tx = null;
+      for (let attempt = 0; attempt < 10; attempt++) {
+        tx = await connection.getTransaction(signature, {
+          commitment: 'confirmed',
+          maxSupportedTransactionVersion: 0,
+        });
+        if (tx) break;
+        await new Promise(r => setTimeout(r, 3000));
+      }
+      if (!tx) {
+        res.status(402).json({ error: 'Transaction not found or not yet confirmed. Please retry.' });
         return;
       }
-
-      const tx = await connection.getTransaction(signature, { commitment: 'confirmed' });
-      if (!tx) {
-        res.status(402).json({ error: 'Transaction not found' });
+      if (tx.meta?.err) {
+        res.status(402).json({ error: 'Transaction failed on-chain', detail: tx.meta.err });
         return;
       }
 

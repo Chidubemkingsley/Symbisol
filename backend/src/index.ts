@@ -1720,15 +1720,28 @@ Return ONLY valid JSON:
       try {
         let realSignature = '';
         if (agentKeypair && solanaConnection) {
-          const tx = new Transaction().add(
+          const { blockhash, lastValidBlockHeight } = await solanaConnection.getLatestBlockhash('confirmed');
+          const tx = new Transaction({
+            recentBlockhash: blockhash,
+            feePayer: agentKeypair.publicKey,
+          }).add(
             SystemProgram.transfer({
               fromPubkey: agentKeypair.publicKey,
               toPubkey: new PublicKey(SERVER_ADDRESS),
               lamports: solToLamports(price.solAmount),
             })
           );
-          realSignature = await solanaConnection.sendTransaction(tx, [agentKeypair]);
-          await solanaConnection.confirmTransaction(realSignature, 'confirmed');
+          realSignature = await solanaConnection.sendTransaction(tx, [agentKeypair], {
+            skipPreflight: false,
+            preflightCommitment: 'confirmed',
+          });
+          const confirmation = await solanaConnection.confirmTransaction(
+            { signature: realSignature, blockhash, lastValidBlockHeight },
+            'confirmed'
+          );
+          if (confirmation.value.err) {
+            throw new Error(`A2A payment failed on-chain: ${JSON.stringify(confirmation.value.err)}`);
+          }
         }
         const selfUrl = `http://127.0.0.1:${PORT}`;
         const apiRes = await axios.post(`${selfUrl}${endpoint}?token=${token}`, tc.params, {

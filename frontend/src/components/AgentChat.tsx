@@ -294,7 +294,10 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
           content: `\`x402:\` Paying ${payment.amount / LAMPORTS_PER_SOL} ${payment.token} from **${publicKey.toBase58().slice(0, 8)}...** → **${payment.recipient.slice(0, 8)}...**`
         }]);
 
-        // Create and send SOL transfer via connected wallet
+        // Build and send the transaction
+        // We do NOT pre-fetch the blockhash here — the wallet adapter fetches a
+        // fresh one internally when signing, so any blockhash we fetch now may
+        // already be stale by the time the user approves the wallet popup.
         const tx = new Transaction().add(
           SystemProgram.transfer({
             fromPubkey: publicKey,
@@ -305,7 +308,10 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
 
         let signature: string;
         try {
-          signature = await sendTransaction(tx, connection);
+          signature = await sendTransaction(tx, connection, {
+            skipPreflight: false,
+            preflightCommitment: 'confirmed',
+          });
         } catch (walletErr: any) {
           setMessages(prev => [...prev, {
             role: 'system',
@@ -316,7 +322,30 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
           return;
         }
 
-        await connection.confirmTransaction(signature, 'confirmed');
+        // Poll signature status — avoids blockhash expiry errors entirely.
+        // The wallet already embedded a fresh blockhash when it signed; we just
+        // need to wait until the network confirms it (up to ~90s on devnet).
+        let confirmed = false;
+        for (let i = 0; i < 30; i++) {
+          const status = await connection.getSignatureStatus(signature, {
+            searchTransactionHistory: true,
+          });
+          const conf = status.value?.confirmationStatus;
+          if (conf === 'confirmed' || conf === 'finalized') {
+            if (status.value?.err) {
+              throw new Error(`Transaction failed on-chain: ${JSON.stringify(status.value.err)}`);
+            }
+            confirmed = true;
+            break;
+          }
+          await new Promise(r => setTimeout(r, 3000));
+        }
+
+        if (!confirmed) {
+          throw new Error(
+            `Transaction not confirmed after 90s. Check: https://explorer.solana.com/tx/${signature}?cluster=devnet`
+          );
+        }
 
         setMessages(prev => [...prev, {
           role: 'system',
@@ -367,9 +396,22 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
       setIsProcessing(false);
       setAgentStatus('idle');
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('API Error:', error);
-      setMessages(prev => [...prev, { role: 'system', content: `**Error:** Failed to connect to agent service.` }]);
+      const msg = error?.message || '';
+      // Provide a helpful message for tx timeout — the SOL may still have been sent
+      if (msg.includes('was not confirmed') || msg.includes('TransactionExpiredTimeoutError') || msg.includes('TransactionExpiredBlockheightExceededError')) {
+        const sigMatch = msg.match(/[1-9A-HJ-NP-Za-km-z]{87,88}/);
+        const explorerLink = sigMatch
+          ? ` [Check on Explorer](https://explorer.solana.com/tx/${sigMatch[0]}?cluster=devnet)`
+          : '';
+        setMessages(prev => [...prev, {
+          role: 'system',
+          content: `**Transaction timed out** — the network was slow but your SOL may have been sent. Please check the Solana Explorer before retrying.${explorerLink}`
+        }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'system', content: `**Error:** ${msg || 'Failed to connect to agent service.'}` }]);
+      }
       setIsProcessing(false);
       setAgentStatus('idle');
     }
