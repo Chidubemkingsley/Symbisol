@@ -1,0 +1,10 @@
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/bs58-022e37b0b11b5fd5.d: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/alphabet.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/decode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/encode.rs
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/libbs58-022e37b0b11b5fd5.rlib: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/alphabet.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/decode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/encode.rs
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/libbs58-022e37b0b11b5fd5.rmeta: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/alphabet.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/decode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/encode.rs
+
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/lib.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/alphabet.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/decode.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.5.1/src/encode.rs:

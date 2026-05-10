@@ -1,0 +1,9 @@
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/solana_invoke-200f4776bcd16018.d: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/stable_instruction_borrowed.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/../README.md
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/libsolana_invoke-200f4776bcd16018.rlib: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/stable_instruction_borrowed.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/../README.md
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/libsolana_invoke-200f4776bcd16018.rmeta: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/stable_instruction_borrowed.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/../README.md
+
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/lib.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/stable_instruction_borrowed.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-invoke-0.4.0/src/../README.md:

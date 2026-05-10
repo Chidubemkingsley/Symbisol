@@ -1,0 +1,19 @@
+{
+  "name": "symbisol-anchor",
+  "version": "1.0.0",
+  "description": "Symbisol Solana Anchor program — Agent Registry, Reputation, and Escrow",
+  "scripts": {
+    "test": "anchor test",
+    "build": "anchor build",
+    "deploy": "anchor deploy"
+  },
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.32.0",
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "chai": "^4.3.7",
+    "mocha": "^11.7.5",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^5.3.3"
+  }
+}

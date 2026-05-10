@@ -1,0 +1,10 @@
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/getrandom-6ca9225237e5d186.d: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/error.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/util.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/custom.rs
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/libgetrandom-6ca9225237e5d186.rlib: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/error.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/util.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/custom.rs
+
+/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/sbpf-solana-solana/release/deps/libgetrandom-6ca9225237e5d186.rmeta: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/error.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/util.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/custom.rs
+
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/lib.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/error.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/util.rs:
+/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.17/src/custom.rs:

@@ -1,0 +1,21 @@
+[package]
+name = "symbisol"
+version = "1.0.0"
+description = "Symbisol — Agent Registry, Reputation, and Escrow on Solana"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "symbisol"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang/idl-build"]
+default = []
+
+[dependencies]
+anchor-lang = { version = "0.32.0", features = ["init-if-needed"] }
+solana-program = "2.2.1"
