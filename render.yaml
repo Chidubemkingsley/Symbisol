@@ -17,6 +17,8 @@ services:
         value: "*"
       - key: SOMNIA_NETWORK
         value: testnet
+      - key: SOMNIA_RPC_URL
+        value: https://dream-rpc.somnia.network
       - key: SOMNIA_PRIVATE_KEY
         sync: false
       - key: SOMNIA_AGENT_REGISTRY
@@ -35,11 +37,13 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: npm install --production=false && npm run build --workspace=somnia-swarm-frontend
+    buildCommand: cd frontend && npm install --production=false && npm run build
     startCommand: cd frontend && npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: "10000"
       - key: NEXT_PUBLIC_API_URL
         value: https://somnia-swarm-backend.onrender.com
       - key: NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID

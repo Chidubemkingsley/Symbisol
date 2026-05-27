@@ -85,7 +85,7 @@ export default function EconomyGraph({ refreshTrigger = 0 }: { refreshTrigger?: 
       try {
         const [paymentsRes, registryRes] = await Promise.all([
           fetch(`${API}/api/payments`, { signal: AbortSignal.timeout(5000) }).then(r => r.ok ? r.json() : { payments: [], count: 0, a2aCount: 0, totalVolume: '0' }).catch(() => ({ payments: [], count: 0, a2aCount: 0, totalVolume: '0' })),
-          fetch(`${API}/api/registry`, { signal: AbortSignal.timeout(5000) }).then(r => r.ok ? r.json() : { agents: [] }).catch(() => ({ agents: [] })),
+          fetch(`${API}/api/agents`, { signal: AbortSignal.timeout(5000) }).then(r => r.ok ? r.json() : { agents: [] }).catch(() => ({ agents: [] })),
         ]);
         setRegistry(registryRes.agents || []);
         setStats({

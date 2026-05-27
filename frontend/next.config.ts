@@ -4,6 +4,9 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: path.join(__dirname, '../'),
+  server: {
+    keepAliveTimeout: 120000,
+  },
 };
 
 module.exports = nextConfig;
