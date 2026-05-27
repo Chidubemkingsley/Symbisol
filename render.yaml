@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: somnia-swarm-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "4002"
+      - key: HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: SOMNIA_NETWORK
+        value: testnet
+      - key: SOMNIA_PRIVATE_KEY
+        sync: false
+      - key: SOMNIA_AGENT_REGISTRY
+        value: "0x4d608e4de735db23A1c08BDacD8a37aa0b586c6A"
+      - key: SOMNIA_AGENT_MANAGER
+        value: "0x686B8f061Ecb573917d0d3fda8EC07d6f8cccB44"
+      - key: SOMNIA_AGENT_EXECUTOR
+        value: "0x157C56dEdbAB6caD541109daabA4663Fc016026e"
+      - key: SOMNIA_AGENT_VAULT
+        value: "0x82f6dfC7E66B592B55B28020B86aC783e6a12B20"
+      - key: GROQ_API_KEY
+        sync: false
+
+  - type: web
+    name: somnia-swarm-frontend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://somnia-swarm-backend.onrender.com
+      - key: NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID
+        sync: false

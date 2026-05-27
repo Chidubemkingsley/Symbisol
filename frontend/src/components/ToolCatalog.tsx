@@ -3,7 +3,7 @@ import { Globe, Box, WifiOff, RefreshCw } from 'lucide-react';
 import { getAgentIcon, getAgentColor } from './AgentIcons';
 import { useI18n } from '@/lib/LanguageContext';
 
-const API = (process.env.NEXT_PUBLIC_API_URL || 'https://symbisol.onrender.com').replace(/\/$/, '');
+const API = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002').replace(/\/$/, '');
 
 interface Tool {
   id: string;
@@ -20,14 +20,14 @@ interface Tool {
 
 // Static fallback shown when backend is unreachable
 const FALLBACK_TOOLS: Tool[] = [
-  { id: 'weather', name: 'Weather Oracle', category: 'data', description: 'Hyper-local weather data and atmospheric insights.', price: '0.001', token: 'SOL', canHireSubAgents: false, reputation: 92 },
-  { id: 'summarize', name: 'Summarizer Pro', category: 'nlp', description: 'Advanced NLP engine for condensing research into executive summaries.', price: '0.003', token: 'SOL', canHireSubAgents: false, reputation: 88 },
-  { id: 'mathSolve', name: 'MathSolver v3', category: 'compute', description: 'High-precision symbolic mathematics and statistical computation.', price: '0.005', token: 'SOL', canHireSubAgents: false, reputation: 95 },
-  { id: 'sentiment', name: 'SentimentAI', category: 'nlp', description: 'Real-time emotional tone analysis and market sentiment tracking.', price: '0.002', token: 'SOL', canHireSubAgents: false, reputation: 79 },
-  { id: 'codeExplain', name: 'CodeExplainer', category: 'code', description: 'Expert-level code analysis, refactoring suggestions, and documentation.', price: '0.004', token: 'SOL', canHireSubAgents: false, reputation: 91 },
-  { id: 'research', name: 'DeepResearch Alpha', category: 'research', description: 'Full-spectrum autonomous researcher with recursive sub-agent hiring.', price: '0.01', token: 'SOL', canHireSubAgents: true, reputation: 94 },
-  { id: 'coding', name: 'AutoCoder Elite', category: 'code', description: 'High-speed software architect for autonomous code synthesis and PR review.', price: '0.02', token: 'SOL', canHireSubAgents: true, reputation: 94 },
-  { id: 'translate', name: 'PolyglotAI', category: 'nlp', description: 'Real-time multi-language translation and localization bridge.', price: '0.005', token: 'SOL', canHireSubAgents: false, reputation: 82 },
+  { id: 'weather', name: 'Weather Oracle', category: 'data', description: 'Hyper-local weather data and atmospheric insights.', price: '0.001', token: 'STT', canHireSubAgents: false, reputation: 92 },
+  { id: 'summarize', name: 'Summarizer Pro', category: 'nlp', description: 'Advanced NLP engine for condensing research into executive summaries.', price: '0.003', token: 'STT', canHireSubAgents: false, reputation: 88 },
+  { id: 'mathSolve', name: 'MathSolver v3', category: 'compute', description: 'High-precision symbolic mathematics and statistical computation.', price: '0.005', token: 'STT', canHireSubAgents: false, reputation: 95 },
+  { id: 'sentiment', name: 'SentimentAI', category: 'nlp', description: 'Real-time emotional tone analysis and market sentiment tracking.', price: '0.002', token: 'STT', canHireSubAgents: false, reputation: 79 },
+  { id: 'codeExplain', name: 'CodeExplainer', category: 'code', description: 'Expert-level code analysis, refactoring suggestions, and documentation.', price: '0.004', token: 'STT', canHireSubAgents: false, reputation: 91 },
+  { id: 'research', name: 'DeepResearch Alpha', category: 'research', description: 'Full-spectrum autonomous researcher with recursive sub-agent hiring.', price: '0.01', token: 'STT', canHireSubAgents: true, reputation: 94 },
+  { id: 'coding', name: 'AutoCoder Elite', category: 'code', description: 'High-speed software architect for autonomous code synthesis and PR review.', price: '0.02', token: 'STT', canHireSubAgents: true, reputation: 94 },
+  { id: 'translate', name: 'PolyglotAI', category: 'nlp', description: 'Real-time multi-language translation and localization bridge.', price: '0.005', token: 'STT', canHireSubAgents: false, reputation: 82 },
 ];
 
 export default function ToolCatalog() {
@@ -49,8 +49,8 @@ export default function ToolCatalog() {
         name: t.name,
         category: t.category,
         description: t.description,
-        price: t.price?.SOL || 0,
-        token: 'SOL',
+        price: t.price?.STT || 0,
+        token: 'STT',
         canHireSubAgents: t.canHireSubAgents,
         reputation: t.reputation || 95,
         isExternal: t.isExternal,

@@ -1,0 +1,117 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/emperor-caesar/Symbisol/contracts/contracts/AgentRegistry.sol": {
+      "lastModificationDate": 1779906028897,
+      "contentHash": "7d135d75cefed09288dfbe7408dbbc4d",
+      "sourceName": "contracts/AgentRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AgentRegistry"
+      ]
+    },
+    "/home/emperor-caesar/Symbisol/contracts/contracts/AgentVault.sol": {
+      "lastModificationDate": 1779905933675,
+      "contentHash": "59c4c3ca61d03b7cded5c564975c7b63",
+      "sourceName": "contracts/AgentVault.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AgentVault"
+      ]
+    },
+    "/home/emperor-caesar/Symbisol/contracts/contracts/TaskManager.sol": {
+      "lastModificationDate": 1779906215188,
+      "contentHash": "f63cbf0e0f5f5c4fd05a43aaffe26b6f",
+      "sourceName": "contracts/TaskManager.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IAgentRegistry",
+        "TaskManager"
+      ]
+    }
+  }
+}

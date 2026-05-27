@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { LanguageProvider } from '@/lib/LanguageContext';
-import { SolanaWalletProvider } from '@/lib/SolanaWalletProvider';
+import { EVMWalletProvider } from '@/lib/EVMWalletProvider';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SolanaWalletProvider>
+    <EVMWalletProvider>
       <LanguageProvider>
         {children}
       </LanguageProvider>
-    </SolanaWalletProvider>
+    </EVMWalletProvider>
   );
 }

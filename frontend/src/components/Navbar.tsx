@@ -3,14 +3,16 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useDisconnect } from 'wagmi';
 import WalletInfo from './WalletInfo';
-import ConnectWalletButton from './ConnectWalletButton';
 import { useI18n } from '@/lib/LanguageContext';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useI18n();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { disconnect } = useDisconnect();
 
   const navItems = [
     { name: t.dashboard, path: '/' },
@@ -43,7 +45,7 @@ export default function Navbar() {
           <Link href="/">
             <img
               src="/logo.png"
-              alt="SYMBISOL Logo"
+              alt="SomniaSwarm Logo"
               style={{
                 width: 48,
                 height: 48,
@@ -85,17 +87,17 @@ export default function Navbar() {
             alignItems: 'center',
             gap: 8,
           }}>
-            SYMBISOL
+            SomniaSwarm
             <span style={{
-              color: '#16a34a',
+              color: '#7C3AED',
               fontSize: '0.65rem',
               fontWeight: 600,
               padding: '2px 8px',
-              backgroundColor: 'rgba(22,163,74,0.08)',
-              border: '1px solid rgba(22,163,74,0.25)',
+              backgroundColor: 'rgba(124,58,237,0.08)',
+              border: '1px solid rgba(124,58,237,0.25)',
               borderRadius: 4,
             }}>
-              v2.0
+              v1.0
             </span>
           </div>
           <div className="mono" style={{
@@ -108,18 +110,18 @@ export default function Navbar() {
             {t.subtitle}
           </div>
           <a
-            href="https://explorer.solana.com/address/5383AVU3XCHu2L4dEVZVGtitekZEuaFBFoxgnFQJJmmB?cluster=devnet"
+            href="https://shannon-explorer.somnia.network"
             target="_blank"
             rel="noreferrer"
             className="mono"
             style={{
               fontSize: '0.55rem',
-              color: '#16a34a',
+              color: '#7C3AED',
               textDecoration: 'none',
               letterSpacing: '0.03em',
             }}
           >
-            5383AVU3…JJmmB ↗
+            Somnia Explorer ↗
           </a>
         </div>
       </div>
@@ -187,7 +189,66 @@ export default function Navbar() {
         </div>
         <WalletInfo />
         <div style={{ width: 1, height: 24, background: '#e5e7eb', margin: '0 8px' }}></div>
-        <ConnectWalletButton />
+        <ConnectButton.Custom>
+          {({ account, chain, openConnectModal, openChainModal, openAccountModal, mounted }) => {
+            if (!mounted) return <div style={{ width: 140, height: 36 }} />;
+            if (!account) {
+              return (
+                <button onClick={openConnectModal} className="mono" style={{
+                  padding: '8px 16px', fontSize: '0.75rem', fontWeight: 700,
+                  background: '#7C3AED', color: '#fff', border: 'none',
+                  borderRadius: 8, cursor: 'pointer',
+                  letterSpacing: '0.03em',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                >
+                  Connect Wallet
+                </button>
+              );
+            }
+            return (
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <button onClick={openChainModal} className="mono" style={{
+                  padding: '6px 10px', fontSize: '0.6rem', fontWeight: 600,
+                  background: 'rgba(124,58,237,0.08)', color: '#7C3AED',
+                  border: '1px solid rgba(124,58,237,0.2)', borderRadius: 6, cursor: 'pointer',
+                }}>
+                  {chain?.name || 'Somnia'}
+                </button>
+                <button onClick={openAccountModal} className="mono" style={{
+                  padding: '6px 10px', fontSize: '0.6rem', fontWeight: 600,
+                  background: 'rgba(255,255,255,0.03)', border: '1px solid #e5e7eb', borderRadius: 6,
+                  color: '#374151', cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#7C3AED'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = '#e5e7eb'}
+                >
+                  {account.displayName}
+                </button>
+                <button onClick={() => disconnect()} className="mono" style={{
+                  padding: '6px 10px', fontSize: '0.6rem', fontWeight: 700,
+                  background: 'rgba(239,68,68,0.08)', color: '#ef4444',
+                  border: '1px solid rgba(239,68,68,0.25)', borderRadius: 6, cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'rgba(239,68,68,0.15)';
+                  e.currentTarget.style.borderColor = '#ef4444';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'rgba(239,68,68,0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(239,68,68,0.25)';
+                }}
+                >
+                  Disconnect
+                </button>
+              </div>
+            );
+          }}
+        </ConnectButton.Custom>
       </nav>
 
       {/* Mobile Hamburger */}

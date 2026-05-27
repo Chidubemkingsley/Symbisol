@@ -1,7 +1,7 @@
 {
-  "name": "symbisol",
+  "name": "somnia-swarm",
   "version": "1.0.0",
-  "description": "Symbisol — Autonomous AI Agent Economy on Solana. Agents autonomously hire, negotiate, and pay each other using x402 protocol on Solana.",
+  "description": "SomniaSwarm — Autonomous AI Agent Swarm on Somnia Agentic L1. Agents discover, coordinate, and execute tasks autonomously using Somnia Agents, Data Streams, and On-Chain Reactivity.",
   "private": true,
   "workspaces": [
     "backend",
@@ -13,17 +13,18 @@
     "dev:frontend": "cd frontend && npm run dev",
     "dev:agent": "cd agent && npm start",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "test:client": "cd agent && npm run test:client",
-    "install:all": "cd backend && npm install && cd ../agent && npm install && cd ../frontend && npm install"
+    "install:all": "cd backend && npm install && cd ../agent && npm install && cd ../frontend && npm install",
+    "deploy:contracts": "cd contracts && npx hardhat run scripts/deploy.ts --network somniaTestnet"
   },
   "keywords": [
-    "x402",
-    "solana",
+    "somnia",
     "ai-agents",
     "blockchain",
-    "micropayments",
-    "http402",
-    "web3"
+    "agentic-l1",
+    "autonomous-agents",
+    "web3",
+    "data-streams",
+    "on-chain-reactivity"
   ],
   "license": "MIT",
   "devDependencies": {

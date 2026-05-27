@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import '@solana/wallet-adapter-react-ui/styles.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Providers } from './Providers';
@@ -13,13 +12,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'SYMBISOL — x402 Agent Economy | Solana Hackathon',
-  description: 'Autonomous Agent-to-Agent micropayment marketplace on Solana via x402 protocol',
+  title: 'SomniaSwarm — Autonomous Agent Swarm on Somnia',
+  description: 'Decentralized AI agent swarm powered by Somnia Agentic L1 — agents discover, negotiate, and execute tasks autonomously',
   icons: {
     icon: '/logo.png',
-  },
-  other: {
-    'talentapp:project_verification': '7903b1f0d8f28602954c3664047bb36e654a872846d77987a475e0435be21954e4bca237344e86fc98927fcd0dc21c84e62911459c536117aad6481197b5c797',
   },
 };
 

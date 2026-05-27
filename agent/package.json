@@ -1,23 +1,17 @@
 {
-  "name": "symbisol-agent",
+  "name": "somnia-swarm-agent",
   "version": "1.0.0",
-  "description": "Symbisol - Autonomous AI agent that discovers and pays for x402-protected API tools on Solana",
+  "description": "SomniaSwarm — Autonomous agent CLI powered by Somnia Agentic L1",
   "type": "module",
   "scripts": {
-    "start": "tsx src/agent.ts",
-    "dev": "tsx watch src/agent.ts",
-    "test:client": "tsx src/test-client.ts",
-    "generate-wallet": "tsx src/generate-wallet.ts",
+    "start": "tsx src/somnia-agent.ts",
+    "dev": "tsx watch src/somnia-agent.ts",
     "build": "tsc",
-    "start:prod": "node dist/agent.js"
+    "start:prod": "node dist/somnia-agent.js"
   },
-  "license": "MIT",
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "axios": "^1.7.9",
-    "dotenv": "^16.4.7",
-    "groq-sdk": "^0.37.0",
-    "@solana/web3.js": "^1.98.0"
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

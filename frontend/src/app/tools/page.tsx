@@ -1,189 +1,133 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { getAgentIcon, getAgentColor } from '@/components/AgentIcons';
-import { RefreshCw, WifiOff, ExternalLink } from 'lucide-react';
+import { Cpu, Globe, FileText, Code, MessageSquare, Activity, TrendingUp, Download } from 'lucide-react';
 
 const API = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002').replace(/\/$/, '');
 
-interface Tool {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  price: { SOL: number; USDC_lamports: number };
-  endpoint: string;
-  method: string;
-  reputation: number;
-  jobsCompleted: number;
-  efficiency: number;
-  canHireSubAgents: boolean;
-  isExternal?: boolean;
-  params?: Record<string, string>;
-}
+const TOOL_ICONS: Record<string, React.ReactNode> = {
+  research: <Globe size={20} />,
+  analysis: <TrendingUp size={20} />,
+  oracle: <Activity size={20} />,
+  nlp: <MessageSquare size={20} />,
+  code: <Code size={20} />,
+  data: <Download size={20} />,
+};
 
 export default function ToolsPage() {
-  const router = useRouter();
-  const [tools, setTools] = useState<Tool[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [tools, setTools] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-  const fetchTools = async () => {
-    setLoading(true);
-    setError(false);
-    try {
-      const res = await fetch(`${API}/api/tools`, { signal: AbortSignal.timeout(6000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      setTools(Array.isArray(data) ? data : data.tools || []);
-    } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => { fetchTools(); }, []);
-
-  const categories = ['All', ...new Set(tools.map(t => t.category))];
-
-  const filteredTools = selectedCategory === 'All'
-    ? tools
-    : tools.filter(t => t.category === selectedCategory);
-
-  const useTool = (tool: Tool) => {
-    const query = tool.canHireSubAgents
-      ? `use ${tool.name} to help me`
-      : `call ${tool.name}`;
-    router.push(`/?query=${encodeURIComponent(query)}`);
-  };
+  useEffect(() => {
+    fetch(`${API}/api/tools`)
+      .then(r => r.json())
+      .then(data => {
+        setTools(data.tools || []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setTools([]);
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <div style={{ padding: '40px 0' }}>
+    <div style={{ paddingBottom: 60 }}>
       <div style={{ marginBottom: 40 }}>
-        <h1 className="mono" style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: 12, color: '#000000' }}>
-          Tool Catalog
+        <h1 className="mono" style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: 12, letterSpacing: '-0.04em' }}>
+          Agent Swarm Tools
         </h1>
-        <p style={{ fontSize: '1.1rem', color: '#333333', maxWidth: 700 }}>
-          Browse available x402-gated agent tools. Pay-per-use with instant Solana micropayments.
+        <p className="mono" style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: 600 }}>
+          Browse the autonomous agent swarm. Each agent has specialized capabilities registered on-chain via Somnia's Agent Registry.
         </p>
       </div>
 
-      {/* Category Filter */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 40, flexWrap: 'wrap', alignItems: 'center' }}>
-        {categories.map((category) => (
-          <button
-            key={category}
-            className="mono"
-            onClick={() => setSelectedCategory(category)}
-            style={{
-              padding: '10px 20px',
-              borderRadius: 'var(--radius-sm)',
-              border: selectedCategory === category
-                ? '1px solid rgba(168, 85, 247, 0.4)'
-                : '1px solid rgba(168, 85, 247, 0.2)',
-              backgroundColor: selectedCategory === category
-                ? 'rgba(168, 85, 247, 0.15)'
-                : 'transparent',
-              color: selectedCategory === category ? '#000000' : '#4b5563',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
-        {error && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.75rem', color: '#f59e0b' }}>
-            <WifiOff size={12} /> Backend unreachable
-            <button onClick={fetchTools} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
-              <RefreshCw size={12} />
-            </button>
-          </div>
-        )}
-      </div>
-
       {loading ? (
-        <div className="mono" style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>Loading tools...</div>
-      ) : filteredTools.length === 0 ? (
-        <div className="mono" style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>No tools found for this category.</div>
+        <div style={{ textAlign: 'center', padding: 60, color: 'var(--text-muted)' }}>
+          <Activity size={32} className="spin" />
+          <p className="mono" style={{ marginTop: 12 }}>Loading agent catalog...</p>
+        </div>
+      ) : tools.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: 60, color: 'var(--text-muted)' }}>
+          <p className="mono">No agents available. Start the backend server.</p>
+        </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {filteredTools.map((tool) => {
-            const Icon = getAgentIcon(tool.id);
-            const color = getAgentColor(tool.id);
-            return (
-              <div
-                key={tool.id}
-                className="glass-panel"
-                style={{ padding: 24, display: 'grid', gridTemplateColumns: '1fr auto', gap: 24, alignItems: 'center', transition: 'all 0.2s ease' }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border-subtle)'; }}
-              >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-                    <div style={{ color }}>
-                      <Icon size={22} />
-                    </div>
-                    <h3 className="mono" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#000000' }}>
-                      {tool.name}
-                    </h3>
-                    <span className="badge" style={{ backgroundColor: `${color}15`, color, border: `1px solid ${color}30` }}>
-                      {tool.category}
-                    </span>
-                    {tool.canHireSubAgents && (
-                      <span className="badge" style={{ backgroundColor: 'rgba(251, 191, 36, 0.15)', color: '#d97706', border: '1px solid rgba(251, 191, 36, 0.3)' }}>
-                        A2A
-                      </span>
-                    )}
-                  </div>
-                  <p style={{ fontSize: '0.95rem', color: '#333333', marginBottom: 12 }}>
-                    {tool.description}
-                  </p>
-                  <div style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: '#71717a' }}>Endpoint: </span>
-                      <code className="mono" style={{ fontSize: '0.85rem', color: '#9333ea', backgroundColor: 'rgba(168, 85, 247, 0.1)', padding: '2px 8px', borderRadius: 4 }}>
-                        {tool.endpoint}
-                      </code>
-                    </div>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: '#71717a' }}>Reputation: </span>
-                      <span className="mono" style={{ fontSize: '0.85rem', color: '#000000', fontWeight: 600 }}>
-                        {tool.reputation}/100
-                      </span>
-                    </div>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: '#71717a' }}>Jobs: </span>
-                      <span className="mono" style={{ fontSize: '0.85rem', color: '#000000', fontWeight: 600 }}>
-                        {tool.jobsCompleted.toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 20 }}>
+          {tools.map((tool: any) => (
+            <div
+              key={tool.id}
+              className="glass-panel"
+              style={{
+                padding: 28,
+                border: 'var(--border-strong)',
+                transition: 'all 0.2s ease',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                <div style={{
+                  width: 40, height: 40,
+                  background: 'linear-gradient(135deg, #7C3AED, #6D28D9)',
+                  borderRadius: 10,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#fff',
+                }}>
+                  {TOOL_ICONS[tool.category] || <Cpu size={20} />}
                 </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#71717a', marginBottom: 4 }}>Price per call</div>
-                    <div className="mono" style={{ fontSize: '1.3rem', fontWeight: 800, color: '#059669' }}>
-                      {tool.price.SOL} SOL
-                    </div>
-                  </div>
-                  <button
-                    className="btn btn-primary"
-                    style={{ minWidth: 140, display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}
-                    onClick={() => useTool(tool)}
-                  >
-                    <ExternalLink size={14} /> Use Tool
-                  </button>
+                <div>
+                  <h3 className="mono" style={{ fontSize: '1rem', fontWeight: 700 }}>
+                    {tool.name}
+                  </h3>
+                  <span style={{
+                    fontSize: '0.65rem',
+                    color: '#7C3AED',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    fontFamily: 'var(--font-mono)',
+                  }}>
+                    {tool.category}
+                  </span>
                 </div>
               </div>
-            );
-          })}
+
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: 16 }}>
+                {tool.description}
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+                {tool.capabilities?.map((cap: string) => (
+                  <span key={cap} className="badge badge-stx" style={{ fontSize: '0.6rem' }}>
+                    {cap}
+                  </span>
+                ))}
+              </div>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr 1fr',
+                gap: 8,
+                padding: 12,
+                background: '#f8f9fa',
+                borderRadius: 8,
+                fontSize: '0.75rem',
+              }}>
+                <div className="mono">
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.6rem' }}>PRICE</div>
+                  <div style={{ fontWeight: 700, color: 'var(--accent-warning)' }}>{tool.price} STT</div>
+                </div>
+                <div className="mono">
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.6rem' }}>REPUTATION</div>
+                  <div style={{ fontWeight: 700 }}>{tool.reputation}</div>
+                </div>
+                <div className="mono">
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.6rem' }}>EFFICIENCY</div>
+                  <div style={{ fontWeight: 700 }}>η{tool.efficiency?.toFixed(2) || '—'}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

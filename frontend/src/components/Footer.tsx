@@ -15,10 +15,10 @@ export default function Footer() {
 
   const resourceLinks = [
     { name: 'Documentation', path: '/docs' },
-    { name: 'API Reference', path: 'https://docs.solana.com' },
+    { name: 'Somnia Docs', path: 'https://docs.somnia.network' },
     { name: 'Tutorials', path: '#' },
-    { name: 'Community', path: 'https://discord.gg/solana' },
-    { name: 'Support', path: 'mailto:support@symbisol.io' },
+    { name: 'Somnia Discord', path: 'https://discord.gg/somnia' },
+    { name: 'Support', path: 'mailto:support@somniaswarm.ai' },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function Footer() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <img
                 src="/logo.png"
-                alt="SYMBISOL"
+                alt="SomniaSwarm"
                 style={{
                   width: 44,
                   height: 44,
@@ -59,7 +59,7 @@ export default function Footer() {
                 letterSpacing: '-0.04em',
                 textTransform: 'uppercase'
               }}>
-                SYMBISOL
+                SOMNIASWARM
               </span>
             </div>
           </Link>
@@ -72,13 +72,13 @@ export default function Footer() {
             fontFamily: 'var(--font-mono)',
             fontWeight: 500,
           }}>
-            The autonomous layer for the agent economy. Secure, trustless A2A micropayments on Solana.
+            The autonomous agent swarm layer. Decentralized multi-agent orchestration on Somnia Agentic L1.
           </p>
           <div style={{ display: 'flex', gap: 12 }}>
             {[
               { icon: Github, href: 'https://github.com/Chidubemkingsley/Symbisol.git' },
               { icon: Twitter, href: 'https://x.com/Davidtristian90' },
-              { icon: Send, href: 'https://t.me/symbisol' }
+              { icon: Send, href: 'https://t.me/somniaswarm' }
             ].map((social, i) => (
               <a
                 key={i}
@@ -131,7 +131,7 @@ export default function Footer() {
             </div>
             <div className="stat-card">
               <span className="label mono">CHAIN</span>
-              <span className="value mono">Solana</span>
+              <span className="value mono">Somnia</span>
             </div>
             <div className="stat-card live">
               <span className="label mono">SYSTEM</span>
@@ -147,7 +147,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="footer-bottom">
         <div className="mono copyright">
-          &copy; 2026 SYMBISOL. ALL RIGHTS RESERVED.
+          &copy; 2026 SOMNIASWARM. ALL RIGHTS RESERVED.
         </div>
         <div className="bottom-links">
           <Link href="/privacy" className="mono bottom-link">PRIVACY</Link>

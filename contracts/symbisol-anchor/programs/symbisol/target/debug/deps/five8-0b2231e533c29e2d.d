@@ -1,9 +1,0 @@
-/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/five8-0b2231e533c29e2d.d: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/decode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/encode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/unlikely.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/../README.md
-
-/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/libfive8-0b2231e533c29e2d.rmeta: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/lib.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/decode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/encode.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/unlikely.rs /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/../README.md
-
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/lib.rs:
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/decode.rs:
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/encode.rs:
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/unlikely.rs:
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/five8-0.2.1/src/../README.md:

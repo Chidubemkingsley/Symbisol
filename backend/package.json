@@ -1,7 +1,7 @@
 {
-  "name": "symbisol-backend",
+  "name": "somnia-swarm-backend",
   "version": "1.0.0",
-  "description": "Symbisol x402 payment-gated API server for autonomous AI agents on Solana",
+  "description": "SomniaSwarm — Autonomous agent swarm engine on Somnia Agentic L1",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -9,18 +9,9 @@
     "build": "tsc",
     "start:prod": "node dist/index.js"
   },
-  "keywords": [
-    "x402",
-    "solana",
-    "ai",
-    "micropayments",
-    "agent-economy"
-  ],
-  "license": "MIT",
   "dependencies": {
-    "@coral-xyz/anchor": "^0.32.0",
-    "@google/generative-ai": "^0.24.1",
-    "@solana/web3.js": "^1.98.4",
+    "@somnia-chain/reactivity": "^0.2.0",
+    "@somnia-chain/streams": "^0.12.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
@@ -28,11 +19,14 @@
     "axios": "^1.13.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "ethers": "^6.13.0",
     "express": "^4.21.2",
-    "groq-sdk": "^0.37.0",
+    "groq-sdk": "^1.2.0",
     "helmet": "^8.0.0",
     "morgan": "^1.10.0",
-    "typescript": "^5.7.0"
+    "somnia-agent-kit": "^3.0.11",
+    "typescript": "^5.7.0",
+    "viem": "^2.21.0"
   },
   "devDependencies": {
     "tsx": "^4.19.0"

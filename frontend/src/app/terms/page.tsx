@@ -1,116 +1,38 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { ArrowLeft, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 
 export default function TermsPage() {
   return (
-    <div className="container" style={{ maxWidth: 800, margin: '80px auto', padding: '0 20px' }}>
-      <Link href="/" className="back-link">
-        <ArrowLeft size={16} /> Back to Dashboard
-      </Link>
-
-      <header style={{ marginBottom: 48, textAlign: 'center' }}>
-        <div className="icon-badge">
-          <FileText size={32} color="#06b6d4" />
+    <div style={{ paddingBottom: 60, maxWidth: 800, margin: '0 auto' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 32, marginTop: 20 }}>
+        <div style={{
+          width: 48, height: 48,
+          background: 'linear-gradient(135deg, #7C3AED, #6D28D9)',
+          borderRadius: 12,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: '#fff',
+        }}>
+          <FileText size={24} />
         </div>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: 16 }}>Terms of Service</h1>
-        <p style={{ color: '#111111' }}>Last updated: February 15, 2026</p>
-      </header>
-
-      <div className="content">
-        <section>
-          <h2>1. Acceptance of Terms</h2>
-          <p>
-            By accessing or using the SYMBISOL platform, you agree to be bound by these Terms of Service.
-            SYMBISOL provides an autonomous layer for agent-to-agent transactions using the x402 protocol on Solana.
-          </p>
-        </section>
-
-        <section>
-          <h2>2. Protocol Participation</h2>
-          <p>
-            Users and agent operators are responsible for the actions initiated by their respective agents.
-            The x402 protocol utilizes on-chain escrow to manage trust; funds held in escrow are subject to
-            the programmatic outcomes of the smart contract logic.
-          </p>
-        </section>
-
-        <section>
-          <h2>3. Disclaimers</h2>
-          <p>
-            SYMBISOL is provided "AS IS". As a decentralized protocol, we do not have control over individual agents
-            or their specific outputs. Users interact with autonomous agents at their own risk.
-          </p>
-        </section>
-
-        <section>
-          <h2>4. Prohibited Use</h2>
-          <p>
-            Users agree not to utilize SYMBISOL agents for illegal activities, market manipulation, or
-            sybil attacks against the reputation system.
-          </p>
-        </section>
+        <h1 className="mono" style={{ fontSize: '2rem', fontWeight: 900, letterSpacing: '-0.04em' }}>
+          Terms of Service
+        </h1>
       </div>
 
-      <style jsx>{`
-        .container {
-          color: #111111;
-        }
-        .back-link {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: #111111;
-          text-decoration: none;
-          font-size: 0.9rem;
-          margin-bottom: 40px;
-          transition: color 0.2s ease;
-        }
-        .back-link:hover {
-          color: #000000;
-        }
-        .icon-badge {
-          width: 64px;
-          height: 64px;
-          background: rgba(6, 182, 212, 0.1);
-          border: 1px solid rgba(6, 182, 212, 0.2);
-          border-radius: 16px;
-          display: flex;
-                  @media (max-width: 480px) {
-                    .container {
-                      padding-left: 16px;
-                      padding-right: 16px;
-                    }
-                  }
-                  @media (max-width: 400px) {
-                    .container {
-                      padding-left: 8px;
-                      padding-right: 8px;
-                    }
-                  }
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 24px;
-        }
-        .content {
-          line-height: 1.8;
-          color: #d1d5db;
-        }
-        section {
-          margin-bottom: 40px;
-        }
-        h2 {
-          color: #ffffff;
-          font-size: 1.5rem;
-          margin-bottom: 16px;
-          font-weight: 700;
-        }
-        strong {
-          color: #06b6d4;
-        }
-      `}</style>
+      <div className="glass-panel" style={{ padding: 32, border: 'var(--border-strong)', lineHeight: 1.8 }}>
+        <p>SomniaSwarm provides an autonomous layer for agent-to-agent coordination using the Somnia blockchain infrastructure.</p>
+
+        <h3 className="mono" style={{ marginTop: 24, marginBottom: 8, fontWeight: 700 }}>Use License</h3>
+        <p>This project is open-source under the MIT license. You are free to use, modify, and distribute the software in compliance with the license terms.</p>
+
+        <h3 className="mono" style={{ marginTop: 24, marginBottom: 8, fontWeight: 700 }}>Disclaimer</h3>
+        <p>The software is provided &quot;as is&quot;, without warranty of any kind. The autonomous agents make decisions based on their programming and available data, which may not always be accurate or appropriate.</p>
+
+        <h3 className="mono" style={{ marginTop: 24, marginBottom: 8, fontWeight: 700 }}>Limitations</h3>
+        <p>In no event shall the authors or copyright holders be liable for any claim, damages, or other liability arising from the use of the software.</p>
+      </div>
     </div>
   );
 }

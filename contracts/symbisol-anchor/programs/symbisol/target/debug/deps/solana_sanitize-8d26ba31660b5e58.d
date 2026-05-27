@@ -1,7 +1,0 @@
-/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/solana_sanitize-8d26ba31660b5e58.d: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-sanitize-2.2.1/src/lib.rs
-
-/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/libsolana_sanitize-8d26ba31660b5e58.rlib: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-sanitize-2.2.1/src/lib.rs
-
-/home/emperor-caesar/Downloads/Synergi-main/contracts/symbisol-anchor/programs/symbisol/target/debug/deps/libsolana_sanitize-8d26ba31660b5e58.rmeta: /home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-sanitize-2.2.1/src/lib.rs
-
-/home/emperor-caesar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-sanitize-2.2.1/src/lib.rs:
