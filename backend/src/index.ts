@@ -31,6 +31,10 @@ function broadcastSSE(event: string, data: any) {
 }
 
 // ── Health ──────────────────────────────────────────────────────────────────
+app.get('/', (_req: Request, res: Response) => {
+  res.json({ message: 'SomniaSwarm Backend API is online' });
+});
+
 app.get('/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', service: 'somnia-swarm', timestamp: new Date().toISOString() });
 });
