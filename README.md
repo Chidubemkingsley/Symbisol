@@ -31,6 +31,11 @@ SomniaSwarm is a **systemic multi-agent orchestration framework** built on Somni
 
 ---
 
+## DEMO
+
+- [DEMO VIDEO](https://youtu.be/b4_qwaAcHls?si=3iJJdkgNop6HLzN-)
+- [lIVE-DEMO](https://somnia-swarm-frontend-uire.onrender.com/)
+
 ## Architecture
 
 ```
