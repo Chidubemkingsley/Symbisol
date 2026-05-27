@@ -14,8 +14,9 @@ export const AgentIconMap: Record<string, LucideIcon> = {
   'code-agent': Terminal,
 };
 
-export const getAgentIcon = (id: string): LucideIcon => {
-  const baseId = id.toLowerCase();
+export const getAgentIcon = (id: any): LucideIcon => {
+  if (!id) return Zap;
+  const baseId = String(id).toLowerCase();
   return AgentIconMap[baseId] || Zap;
 };
 
@@ -33,7 +34,8 @@ export const AgentColors: Record<string, string> = {
   'code-agent': '#15803d',
 };
 
-export const getAgentColor = (id: string) => {
-  const baseId = id.toLowerCase();
+export const getAgentColor = (id: any) => {
+  if (!id) return '#64748b';
+  const baseId = String(id).toLowerCase();
   return AgentColors[baseId] || '#64748b'; // muted
 };

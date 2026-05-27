@@ -49,7 +49,7 @@ const SimpleMarkdown = ({ text }: { text: string }) => {
 };
 
 function ResultCard({ step }: { step: StepCard }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const Icon = getAgentIcon(step.agentName);
   const color = getAgentColor(step.agentName);
   const isDone = step.status === 'done';
@@ -292,7 +292,19 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
 
       const totalFee = (data.results || []).reduce((s: number, r: any) => s + parseFloat(r.fee || '0'), 0);
 
-      setMessages(prev => [...prev, { role: 'assistant', content: '', steps, cost: totalFee }]);
+      // Build a visible summary from agent results
+      const summaryParts = (data.results || []).map((r: any) => {
+        if (!r.result) return '';
+        if (typeof r.result === 'string') return r.result;
+        const priority = ['summary','interpretation','translated','result','forecast','recommendation','code','agentNote'];
+        for (const key of priority) {
+          if (r.result[key] && typeof r.result[key] === 'string') return r.result[key];
+        }
+        return '';
+      }).filter(Boolean);
+      const summaryText = data.summary || summaryParts.join('\n\n') || '';
+
+      setMessages(prev => [...prev, { role: 'assistant', content: summaryText, steps, cost: totalFee }]);
       setActiveSteps([]);
       setAgentStatus('idle');
       setIsProcessing(false);
@@ -357,6 +369,16 @@ export default function AgentChat({ onNewPayments, onProtocolTrace }: Params) {
                 </div>
               ) : (
                 <div style={{ width: '100%' }}>
+                  {msg.content && (
+                    <div style={{
+                      padding: '12px 16px', marginBottom: 10,
+                      background: '#f0fdf4', border: '1px solid rgba(22,163,74,0.2)',
+                      borderRadius: 10, fontSize: '0.88rem', lineHeight: 1.7, color: '#1f2937',
+                      whiteSpace: 'pre-wrap',
+                    }}>
+                      <SimpleMarkdown text={msg.content} />
+                    </div>
+                  )}
                   {msg.steps?.map((step, i) => <ResultCard key={i} step={step} />)}
                   {msg.cost !== undefined && msg.cost > 0 && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6, fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#f59e0b' }}>
